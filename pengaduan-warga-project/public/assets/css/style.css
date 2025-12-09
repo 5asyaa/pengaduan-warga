@@ -1,0 +1,23 @@
+/* =====================================
+   MASTER STYLESHEET (IMPORT ALL MODULES)
+   ===================================== */
+
+/* Base & Global */
+@import url("_base.css");
+
+/* Components (buttons, forms, alerts, utilities) */
+@import url("_components.css");
+
+/* Navigation Bar */
+@import url("_navbar.css");
+
+/* Table Styles */
+@import url("_table.css");
+
+/* Login & Register Pages */
+@import url("_auth.css");
+
+@import url("_dashboard.css");
+
+@import url("detail.css");
+
