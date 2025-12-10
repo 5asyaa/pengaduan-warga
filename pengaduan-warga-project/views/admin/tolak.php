@@ -10,7 +10,6 @@ $id = isset($_GET['id']) ? $_GET['id'] : '';
 
     <div class="admin-main">
 
-        <!-- NAVBAR -->
         <header class="admin-header">
             <div class="admin-header-left">
                 <h1>Dashboard Admin</h1>
@@ -25,14 +24,12 @@ $id = isset($_GET['id']) ? $_GET['id'] : '';
         
         <div class="detail-wrapper container" style="margin-center: 10px; max-width: 1000px; margin-left:-200px;">
 
-            <!-- Baris atas tombol kembali -->
             <div class="detail-top-row">
                 <a href="/pengaduan-warga-project/public/admin/detail.php?id=<?= htmlspecialchars($id) ?>" class="btn-back">
                     ← Kembali
                 </a>
             </div>
 
-            <!-- Judul -->
             <div class="detail-heading">
                 <h1 class="detail-title">Tolak Pengaduan</h1>
                 <p class="detail-subtitle">
@@ -40,7 +37,6 @@ $id = isset($_GET['id']) ? $_GET['id'] : '';
                 </p>
             </div>
 
-            <!-- FORM -->
             <form method="POST" class="detail-form">
 
                 <input type="hidden" name="id" value="<?= htmlspecialchars($id) ?>">
@@ -48,7 +44,6 @@ $id = isset($_GET['id']) ? $_GET['id'] : '';
                 <div class="detail-box-full">
                     <label for="alasan_penolakan" class="detail-box-label">Alasan Penolakan</label>
 
-                    <!-- TEXTAREA **HARUS BENAR**, INI YANG MEMPERBAIKI ERROR -->
                     <textarea style="width: 96%; max-width: 960px;;
                         id="alasan_penolakan"
                         name="alasan_penolakan"
