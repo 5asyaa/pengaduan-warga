@@ -9,7 +9,7 @@ class User
         $this->pdo = $pdo;
     }
 
-    // Cari user berdasarkan email
+    // mencari user berdasarkan email
     public function findByEmail(string $email)
     {
         $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = ?");
@@ -17,7 +17,7 @@ class User
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    // Buat user baru (password PLAIN TEXT seperti semula)
+    // buat user baru (plain password)
     public function createUser(string $nama, string $email, string $password, string $role = 'user'): bool
     {
         $stmt = $this->pdo->prepare("
@@ -27,7 +27,7 @@ class User
         return $stmt->execute([$nama, $email, $password, $role]);
     }
 
-    // Verifikasi password (plain text)
+    // verifikasi password 
     public function verifyPlainPassword(string $inputPassword, string $storedPassword): bool
     {
         return $inputPassword === $storedPassword;
