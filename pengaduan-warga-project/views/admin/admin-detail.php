@@ -10,7 +10,7 @@ $status       = trim(strtolower($pengaduan['status']));
 
 <div class="admin-main">
 
-    <!-- TOP NAVBAR -->
+    <!-- navbar -->
     <header class="admin-header">
         <div class="admin-header-left">
             <h1>Dashboard Admin</h1>
@@ -22,17 +22,15 @@ $status       = trim(strtolower($pengaduan['status']));
         </div>
     </header>
 
-    <!-- CARD DETAIL -->
+    <!-- card -->
     <div class="container" style="margin-top:110px; max-width:1000px; margin-left:-40px;">
 
         <div class="card shadow-sm p-4" style="border-radius: 14px;">
 
-            <!-- BUTTON KEMBALI -->
             <a href="dashboard.php" class="btn-kembali-admin">
                 ← Kembali
             </a>
 
-            <!-- TITLE CENTER -->
             <h2 class="text-center" style="font-weight: 700; margin-top: 10px;">
                 Detail Pengaduan
             </h2>
@@ -42,13 +40,12 @@ $status       = trim(strtolower($pengaduan['status']));
 
             <hr>
 
-            <!-- INFORMASI UTAMA -->
+            <!-- informasi -->
             <p><strong>ID Pengaduan:</strong> <?= htmlspecialchars($pengaduan['id']); ?></p>
             <p><strong>Nama Pengadu:</strong> <?= htmlspecialchars($pengaduan['nama']); ?></p>
             <p><strong>Email:</strong> <?= htmlspecialchars($pengaduan['email']); ?></p>
             <p><strong>Deskripsi:</strong> <?= htmlspecialchars($pengaduan['deskripsi']); ?></p>
 
-            <!-- STATUS -->
             <p><strong>Status:</strong>
                 <?php if ($status === 'menunggu'): ?>
                     <span class="badge bg-warning text-dark">Menunggu</span>
@@ -61,14 +58,12 @@ $status       = trim(strtolower($pengaduan['status']));
                 <?php endif; ?>
             </p>
 
-            <!-- CATATAN ADMIN -->
             <?php if (!empty($pengaduan['catatan_admin'])): ?>
                 <p><strong>Catatan Admin:</strong> 
                     <?= htmlspecialchars($pengaduan['catatan_admin']); ?>
                 </p>
             <?php endif; ?>
 
-            <!-- ALASAN PENOLAKAN -->
             <?php if ($status === 'ditolak'): ?>
                 <p><strong>Alasan Penolakan:</strong> 
                     <?= htmlspecialchars($pengaduan['alasan_penolakan'] ?? 'Tidak ada alasan'); ?>
@@ -77,7 +72,6 @@ $status       = trim(strtolower($pengaduan['status']));
 
             <br>
 
-            <!-- FOTO BUKTI AWAL -->
             <h4 style="font-weight:600;">Foto Bukti Awal</h4>
             <div class="row">
                 <?php if (!empty($foto_awal)): ?>
@@ -95,7 +89,6 @@ $status       = trim(strtolower($pengaduan['status']));
 
             <br>
 
-            <!-- FOTO BUKTI PENYELESAIAN -->
             <h4 style="font-weight:600;">Foto Bukti Penyelesaian</h4>
             <div class="row">
                 <?php if (!empty($foto_selesai)): ?>
@@ -113,7 +106,6 @@ $status       = trim(strtolower($pengaduan['status']));
 
             <br>
 
-            <!-- BUTTON AKSI -->
             <div class="d-flex gap-2 mt-2">
 
                 <?php if ($status === 'menunggu'): ?>
