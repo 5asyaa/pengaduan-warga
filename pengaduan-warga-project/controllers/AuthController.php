@@ -17,18 +17,18 @@ class AuthController
         $this->pdo = $pdo;
         $this->userModel = new User($pdo);
 
-        // Auto login dari cookie jika session kosong
+        // auto login dari cookie kalau sessionnya kosong
         $this->autoLoginFromCookie();
     }
 
-    /* ---------- LOGIN FORM ---------- */
+    // bagian form login
     public function loginForm(string $error = '')
     {
         $success = '';
         include __DIR__ . "/../views/auth/login.php";
     }
 
-    /* ---------- LOGIN PROCESS ---------- */
+    // bagian proses login
     public function login()
     {
         $email    = trim($_POST['email'] ?? '');
@@ -38,12 +38,10 @@ class AuthController
 
         if ($user && $this->userModel->verifyPlainPassword($password, $user['password'])) {
 
-            // Buat session login
+            // buat session login
             $_SESSION['user'] = $user;
 
-            /* ======================================================
-               AUTO LOGIN COOKIE (remember_user)
-            ====================================================== */
+            // auto login dari cookie (remember_user)
             $token = base64_encode(json_encode([
                 "email" => $user["email"]
             ]));
@@ -51,9 +49,7 @@ class AuthController
             setcookie("remember_user", $token, time() + (86400 * 30), "/", "", false, true);
 
 
-            /* ======================================================
-               LOGIN HISTORY (menyimpan semua user yang pernah login)
-            ====================================================== */
+            // menyimpan login histori (menyimpan semua user yang pernah login) //
             $history = [];
 
             if (isset($_COOKIE['login_history'])) {
@@ -63,16 +59,16 @@ class AuthController
                 }
             }
 
-            // Tambahkan email kalau belum ada di history
+            // tambah email kalau belum ada di historynya
             if (!in_array($user["email"], $history)) {
                 $history[] = $user["email"];
             }
 
-            // Simpan kembali ke cookie (30 hari)
+            // simpan kembali ke cookie selama 30 hari
             setcookie("login_history", json_encode($history), time() + (86400 * 30), "/", "", false, true);
 
 
-            // Redirect sesuai role
+            // mengalihkan domain ke url lain secara otomatis sesuai role
             if ($user['role'] === 'admin') {
                 header("Location: admin/dashboard.php");
             } else {
@@ -81,16 +77,16 @@ class AuthController
             exit;
         }
 
-        // Jika login gagal
+        // jika loginnya gagal
         $error   = "Email atau password salah!";
         $success = '';
         include __DIR__ . "/../views/auth/login.php";
     }
 
-    /* ---------- AUTO LOGIN FROM COOKIE ---------- */
+    //  auto login dari cookie 
     public function autoLoginFromCookie()
     {
-        // Jika sudah punya session → tidak perlu auto login
+        // kalau sudah punya session: tidak perlu auto login
         if (isset($_SESSION['user'])) {
             return;
         }
@@ -105,7 +101,7 @@ class AuthController
             return;
         }
 
-        // Cari user berdasarkan email
+        // mencari user berdasarkan email
         $user = $this->userModel->findByEmail($data['email']);
 
         if ($user) {
@@ -113,13 +109,13 @@ class AuthController
         }
     }
 
-    /* ---------- REGISTER FORM ---------- */
+    // bagian form register
     public function registerForm(string $error = '', string $success = '')
     {
         include __DIR__ . "/../views/auth/register.php";
     }
 
-    /* ---------- REGISTER PROCESS ---------- */
+    // bagian proses register
     public function register()
     {
         $nama     = trim($_POST['nama'] ?? '');
@@ -149,18 +145,17 @@ class AuthController
         include __DIR__ . "/../views/auth/register.php";
     }
 
-    /* ---------- LOGOUT ---------- */
+    // bagian logout
     public function logout()
     {
-        // Hapus session login
+        // hapus session loginnya
         $_SESSION = [];
         session_destroy();
 
-        // Hapus auto-login cookie
+        // meghapus auto-login cookie
         setcookie("remember_user", "", time() - 3600, "/", "", false, true);
 
-        // Cookie login_history TIDAK dihapus
-        // karena harus menyimpan riwayat user yang pernah login
+        // cookie login_history tidak dihapus karena harus menyimpan riwayat user yang pernah login
 
         header("Location: index.php");
         exit;
