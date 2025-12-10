@@ -2,7 +2,7 @@
 include __DIR__ . "/../layouts/header.php";
 include __DIR__ . "/../layouts/navbar_admin.php";
 
-$pengaduan = $data; // controller mengirim findById($id) sebagai $data
+$pengaduan = $data; // controller irim data pengaduan ke view
 ?>
 
 <div class="container" style="margin-top: 30px;">
@@ -20,13 +20,11 @@ $pengaduan = $data; // controller mengirim findById($id) sebagai $data
 
     <div style="margin-top: 20px; display:flex; gap:10px;">
 
-        <!-- Tombol TERIMA -->
         <a href="proses.php?id=<?= $pengaduan['id']; ?>&act=set"
            class="btn btn-success">
             Terima Pengaduan
         </a>
 
-        <!-- Tombol Kembali -->
         <a href="detail.php?id=<?= $pengaduan['id']; ?>" 
            class="btn btn-secondary">
             Kembali
