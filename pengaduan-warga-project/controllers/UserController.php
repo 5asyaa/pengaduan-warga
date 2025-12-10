@@ -16,9 +16,7 @@ class UserController
         $this->model = new Pengaduan($pdo);
     }
 
-    // ==========================
-    // DASHBOARD USER
-    // ==========================
+    // bagian dashboard
     public function dashboard()
     {
         $user_id    = $_SESSION['user']['id'];
@@ -27,9 +25,7 @@ class UserController
         include __DIR__ . "/../views/user/dashboard.php";
     }
 
-    // ==========================
-    // DETAIL PENGADUAN USER
-    // ==========================
+    // bagian detail pengaduan
     public function detail($id)
     {
         $user_id   = $_SESSION['user']['id'];
@@ -40,17 +36,13 @@ class UserController
         include __DIR__ . "/../views/user/user-detail.php";
     }
 
-    // ==========================
-    // FORM BUAT PENGADUAN
-    // ==========================
+    // bagian form buat pengaduan
     public function formPengaduanBaru($error = '', $success = '')
     {
         include __DIR__ . "/../views/user/pengaduan_baru.php";
     }
 
-    // ==========================
-    // PROSES SUBMIT PENGADUAN BARU
-    // ==========================
+    // bagian proses submit pengaduan baru
     public function submitPengaduanBaru()
     {
         if ($_POST['token'] !== $_SESSION['csrf_token']) {
@@ -64,7 +56,7 @@ class UserController
 
         $pengaduan_id = $this->model->createPengaduan($user_id, $deskripsi, $lokasi, $identitas);
 
-        // Upload foto
+        // bagian upload foto
         if (!empty($_FILES['foto']['name'][0])) {
 
             $jumlah = count($_FILES['foto']['name']);
@@ -75,14 +67,14 @@ class UserController
                 $size   = $_FILES['foto']['size'][$i];
                 $tmp    = $_FILES['foto']['tmp_name'][$i];
 
-                // Validasi foto
+                // validasi foto
                 $valid = $this->model->validasiFoto($nama, $size);
                 if ($valid !== true) {
                     $error = $valid;
                     break;
                 }
 
-                // Proses upload
+                // proses upload foto
                 $ext = pathinfo($nama, PATHINFO_EXTENSION);
                 $nama_baru = time() . "_" . rand(100, 999) . "." . $ext;
 
@@ -108,9 +100,7 @@ class UserController
         include __DIR__ . "/../views/user/pengaduan_baru.php";
     }
 
-    // ==========================
-    // HALAMAN KONFIRMASI HAPUS
-    // ==========================
+    // bagian konfirmasi hapus
     public function hapus($id)
     {
         $user_id = $_SESSION['user']['id'];
@@ -129,9 +119,7 @@ class UserController
         include __DIR__ . "/../views/user/hapus.php";
     }
 
-    // ==========================
-    // EKSEKUSI HAPUS
-    // ==========================
+    // bagian eksekusi hapus
     public function submitHapus($id)
     {
         $user_id = $_SESSION['user']['id'];
@@ -145,7 +133,7 @@ class UserController
             die("Pengaduan tidak dapat dihapus karena sudah diproses admin.");
         }
 
-        // Hapus foto bukti awal & penyelesaian (jika ada)
+        // hapus foto bukti awal & penyelesaian kalau ada
         $foto_awal = $this->model->getFotoByType($id, 'awal');
         $foto_selesai = $this->model->getFotoByType($id, 'penyelesaian');
 
@@ -156,7 +144,7 @@ class UserController
             if (file_exists($file)) unlink($file);
         }
 
-        // Hapus database
+        // hapus database
         $this->model->deletePengaduan($id);
 
         header("Location: dashboard.php");
