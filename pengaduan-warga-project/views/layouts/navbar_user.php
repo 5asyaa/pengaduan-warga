@@ -1,6 +1,5 @@
 <div class="admin-layout">
 
-    <!-- SIDEBAR -->
     <aside class="admin-sidebar">
         <div class="admin-brand">
             <span class="brand-title">Pengaduan Warga</span>
@@ -16,10 +15,8 @@
         </nav>
     </aside>
 
-    <!-- MAIN -->
     <div class="admin-main">
 
-        <!-- HEADER -->
         <div class="admin-header">
             <div class="admin-header-left">
                 <h1>Detail Pengaduan</h1>
