@@ -1,13 +1,10 @@
 <?php
-// VIEW INI DI-LOAD DARI AdminController::selesai($id) atau submitSelesai($id)
-// Variabel yang tersedia: $data (pengaduan), $fatalError (jika ada)
 include __DIR__ . "/../layouts/header.php";
 include __DIR__ . "/../layouts/navbar_admin.php"; 
 ?>
 
 <div class="admin-layout">
 
-    <!-- SIDEBAR -->
     <aside class="admin-sidebar">
         <div class="admin-brand">
             <span class="brand-title">Pengaduan Warga</span>
@@ -23,10 +20,8 @@ include __DIR__ . "/../layouts/navbar_admin.php";
         </nav>
     </aside>
 
-    <!-- MAIN -->
     <div class="admin-main">
 
-        <!-- HEADER -->
         <div class="admin-header">
             <div class="admin-header-left">
                 <h1>Selesaikan Pengaduan</h1>
@@ -39,27 +34,23 @@ include __DIR__ . "/../layouts/navbar_admin.php";
             </div>
         </div>
 
-        <!-- CONTENT -->
         <div class="admin-content">
             <div class="admin-content-inner">
 
                 <div class="admin-card" style="max-width:900px; margin:0 auto; margin-left:-40px;">
 
-                    <!-- ERROR JIKA UPLOAD GAGAL -->
                     <?php if (!empty($fatalError)): ?>
                         <div class="alert alert-danger" style="margin-bottom:15px;">
                             <?= htmlspecialchars($fatalError); ?>
                         </div>
                     <?php endif; ?>
 
-                    <!-- FORM -->
                     <form
                         action="selesai.php?id=<?= htmlspecialchars($data['id']); ?>"
                         method="POST"
                         enctype="multipart/form-data"
                     >
 
-                        <!-- FOTO BUKTI PENYELESAIAN -->
                         <div class="input-group" style="margin-bottom:20px;">
                             <label for="foto_penyelesaian"><b>Foto Bukti Penyelesaian</b></label>
                             <input
@@ -73,7 +64,6 @@ include __DIR__ . "/../layouts/navbar_admin.php";
                             <small>Anda dapat mengunggah lebih dari satu foto.</small>
                         </div>
 
-                        <!-- CATATAN ADMIN -->
                         <div class="input-group" style="margin-bottom:20px;">
                             <label for="catatan_admin"><b>Catatan Admin (Opsional)</b></label>
                             <textarea
@@ -85,7 +75,6 @@ include __DIR__ . "/../layouts/navbar_admin.php";
                             ><?= isset($_POST['catatan_admin']) ? htmlspecialchars($_POST['catatan_admin']) : ''; ?></textarea>
                         </div>
 
-                        <!-- BUTTONS -->
                         <div style="display:flex; justify-content:space-between; margin-top:10px;">
                             <a href="detail.php?id=<?= htmlspecialchars($data['id']); ?>" class="btn-back">
                                 ← Kembali
