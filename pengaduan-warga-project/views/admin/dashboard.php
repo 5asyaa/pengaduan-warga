@@ -3,8 +3,6 @@ include __DIR__ . "/../layouts/header.php";
 ?>
 
 <div class="admin-layout">
-
-    <!-- SIDEBAR -->
     <aside class="admin-sidebar">
         <div class="admin-brand">
             <span class="brand-title">Pengaduan Warga</span>
@@ -23,10 +21,8 @@ include __DIR__ . "/../layouts/header.php";
         </nav>
     </aside>
 
-    <!-- MAIN AREA -->
     <div class="admin-main">
 
-        <!-- NAVBAR -->
         <header class="admin-header">
             <div class="admin-header-left">
                 <h1>Dashboard Admin</h1>
@@ -39,11 +35,9 @@ include __DIR__ . "/../layouts/header.php";
             </div>
         </header>
 
-        <!-- CONTENT -->
         <main class="admin-content">
             <div class="admin-content-inner">
 
-                <!-- HITUNG STATUS -->
                 <?php
                 $total = count($pengaduan);
 
@@ -64,7 +58,6 @@ include __DIR__ . "/../layouts/header.php";
                 ));
                 ?>
 
-                <!-- STAT CARD -->
                 <section class="stat-grid">
 
                     <div class="stat-card total">
@@ -94,7 +87,6 @@ include __DIR__ . "/../layouts/header.php";
 
                 </section>
 
-                <!-- TABLE -->
                 <section class="admin-card">
 
                     <div class="admin-card-header">
