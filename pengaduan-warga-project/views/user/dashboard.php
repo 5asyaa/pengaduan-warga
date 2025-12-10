@@ -3,11 +3,9 @@ include __DIR__ . "/../layouts/header.php";
 include __DIR__ . "/../layouts/navbar_user.php";
 ?>
 
-        <!-- CONTENT -->
         <div class="admin-content">
             <div class="admin-content-inner">
 
-                <!-- CARD UTAMA -->
                 <section class="admin-card">
                     <h2>Pengaduan Anda</h2>
                     <p class="subtitle">Daftar pengaduan yang pernah Anda kirimkan</p>
@@ -15,7 +13,6 @@ include __DIR__ . "/../layouts/navbar_user.php";
                     <a href="pengaduan_baru.php" class="btn-small primary">+ Buat Pengaduan</a>
                 </section>
 
-                <!-- TABEL RIWAYAT -->
                 <section class="admin-card">
 
                     <h2>Riwayat Pengaduan</h2>
@@ -39,7 +36,7 @@ include __DIR__ . "/../layouts/navbar_user.php";
                             <tbody>
 
                                 <?php if (!empty($pengaduan)) : ?>
-                                    <?php $no = 1; // ID urut user ?>
+                                    <?php $no = 1; ?>
 
                                     <?php foreach ($pengaduan as $p): ?>
 
@@ -55,7 +52,6 @@ include __DIR__ . "/../layouts/navbar_user.php";
                                         ?>
 
                                         <tr>
-                                            <!-- ID URUT USER -->
                                             <td><?= $no; ?></td>
 
                                             <td><?= htmlspecialchars(substr($p['deskripsi'], 0, 40)); ?>...</td>
