@@ -1,6 +1,5 @@
 <div class="admin-layout">
 
-    <!-- SIDEBAR -->
     <aside class="admin-sidebar">
         <div class="admin-brand">
             <span class="brand-title">Pengaduan Warga</span>
@@ -19,10 +18,8 @@
         </nav>
     </aside>
 
-    <!-- MAIN AREA -->
     <div class="admin-main">
 
-        <!-- NAVBAR -->
         <header class="admin-header">
             <div class="admin-header-left">
                 <h1>Dashboard Admin</h1>
@@ -34,7 +31,7 @@
                 <a href="/pengaduan-warga-project/public/logout.php" class="admin-logout-btn">Logout</a>
             </div>
         </header>
-<!-- SIDEBAR BARU (CLEAN & FIXED) -->
+
 <aside class="admin-sidebar">
 
     <div class="admin-brand">
