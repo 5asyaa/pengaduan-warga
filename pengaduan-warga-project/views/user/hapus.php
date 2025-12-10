@@ -1,12 +1,10 @@
 <?php
 include __DIR__ . "/../layouts/header.php";
 
-// ID urut user dari dashboard
 $no_urut = $_GET['no'] ?? null;
 ?>
 <div class="admin-layout">
 
-    <!-- SIDEBAR -->
     <aside class="admin-sidebar">
         <div class="admin-brand">
             <span class="brand-title">Pengaduan Warga</span>
@@ -22,7 +20,6 @@ $no_urut = $_GET['no'] ?? null;
 
     <div class="admin-main">
 
-        <!-- HEADER -->
         <div class="admin-header">
             <div class="admin-header-left">
                 <h1>Hapus Pengaduan</h1>
@@ -35,7 +32,6 @@ $no_urut = $_GET['no'] ?? null;
             </div>
         </div>
 
-        <!-- CONTENT -->
         <div class="admin-content">
             <div class="admin-content-inner">
 
@@ -45,7 +41,6 @@ $no_urut = $_GET['no'] ?? null;
                         Konfirmasi Penghapusan
                     </h2>
 
-                    <!-- ID URUT USER -->
                     <p><b>ID Pengaduan Anda:</b> <?= htmlspecialchars($no_urut); ?></p>
 
                     <p><b>Deskripsi:</b> <?= htmlspecialchars($data['deskripsi']); ?></p>
@@ -66,7 +61,6 @@ $no_urut = $_GET['no'] ?? null;
 
                     <div style="display:flex; gap:10px; margin-top:20px;">
 
-                        <!-- TOMBOL HAPUS SUDAH DIPERBAIKI -->
                         <a href="hapus.php?submit=1&id=<?= $data['id']; ?>" 
                            class="btn-small danger">
                             Hapus
