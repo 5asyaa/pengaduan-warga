@@ -7,39 +7,38 @@ require_once __DIR__ . "/../helpers/auth_check.php";
 class AdminController
 {
     private $model;
-
+    // admin role
     public function __construct($pdo)
     {
-        cekRole(['admin']); // pastikan hanya admin
+        cekRole(['admin']); 
         $this->model = new Pengaduan($pdo);
     }
 
-    /* ========== DASHBOARD ========== */
+    // bagian dashboard
     public function dashboard()
     {
         $pengaduan = $this->model->getAll();
         include __DIR__ . "/../views/admin/dashboard.php";
     }
 
-    /* ========== DETAIL ========== */
+    // bagian detail
     public function detail() {
         require_once __DIR__ . '/../models/Pengaduan.php';
         global $pdo;
 
         $id = $_GET["id"];
 
-        // Buat model
+        //buat modelnya
         $model = new Pengaduan($pdo);
 
-        // Ambil data pengaduan
+        // ambil data pengaduan
         $pengaduan = $model->findById($id);
 
-        // ⬇ TAMBAHKAN 2 BARIS INI AGAR FOTO MUNCUL ⬇
+        // foto bukti awal dan penyelesaian
         $foto_awal = $model->getFotoByType($id, 'awal');
         $foto_selesai = $model->getFotoByType($id, 'penyelesaian');
-        // ⬆ TAMBAHKAN 2 BARIS INI ⬆
 
-        // Kirim semua data ke view
+        // buat kirim data ke view
         $data["pengaduan"] = $pengaduan;
         $data["foto_awal"] = $foto_awal;
         $data["foto_selesai"] = $foto_selesai;
@@ -47,9 +46,9 @@ class AdminController
         include __DIR__ . '/../views/admin/admin-detail.php';
     }
 
-    /* ========== PROSES ========== */
+    // bagian proses
 
-    // Tampilkan konfirmasi "mulai proses"
+    // konfirmasi "mulai proses"
     public function proses($id)
     {
         $data = $this->model->findById($id);
@@ -60,19 +59,18 @@ class AdminController
         include __DIR__ . "/../views/admin/proses.php";
     }
 
-    // Form proses disubmit: ubah status -> 'proses'
+    // ubah status ke 'proses'
     public function submitProses($id)
     {
-        // optional: cek CSRF token kalau mau
         $this->model->updateStatus($id, 'proses');
 
         header("Location: detail.php?id=" . $id);
         exit;
     }
 
-    /* ========== SELESAI ========== */
+    // bagian selesai
 
-    // Tampilkan form upload bukti penyelesaian
+    // tampilkan form upload bukti penyelesaian
     public function selesai($id)
     {
         $data = $this->model->findById($id);
@@ -86,7 +84,7 @@ class AdminController
         include __DIR__ . "/../views/admin/selesai.php";
     }
 
-    // Terima upload bukti + ubah status -> 'selesai'
+    // terima upload bukti dan ubah status ke 'selesai'
     public function submitSelesai($id)
     {
         $data = $this->model->findById($id);
@@ -131,7 +129,7 @@ class AdminController
         }
 
         if (!empty($error)) {
-            // gagal upload foto → jangan ubah status
+            // jika gagal upload foto: jangan ubah status
             $fatalError = "Gagal menyimpan bukti penyelesaian: " . $error;
             include __DIR__ . "/../views/admin/selesai.php";
             return;
@@ -140,7 +138,7 @@ class AdminController
             $this->model->saveCatatanAdmin($id, $_POST['catatan_admin']);
         }
 
-        // kalau semua aman → ubah status jadi 'selesai'
+        // kalau semua aman: ubah status jadi 'selesai'
         $this->model->updateStatus($id, 'selesai');
 
         header("Location: detail.php?id=" . $id);
