@@ -2,18 +2,15 @@
 include __DIR__ . "/../layouts/header.php";
 include __DIR__ . "/../layouts/navbar_user.php";
 ?>
-        <!-- CONTENT -->
         <div class="admin-content">
             <div class="admin-content-inner">
 
                 <div class="admin-card" style="width:100%; max-width:900px; margin:0 auto; padding:25px;">
 
-                    <!-- Tombol kembali -->
                     <a href="dashboard.php" class="btn-back" style="margin-bottom:20px; display:inline-block;">
                         ← Kembali
                     </a>
 
-                    <!-- TITLE -->
                     <h2 style="text-align:center; margin-bottom:10px; font-weight:700;">
                         Detail Pengaduan
                     </h2>
@@ -22,7 +19,6 @@ include __DIR__ . "/../layouts/navbar_user.php";
                     </p>
 
                     <?php
-                    // Nomor urut dari GET
                     $no_user = isset($_GET['no']) ? $_GET['no'] : "-";
                     ?>
 
@@ -30,16 +26,13 @@ include __DIR__ . "/../layouts/navbar_user.php";
                         <p>Data pengaduan tidak ditemukan.</p>
                     <?php else: ?>
 
-                        <!-- GRID INFORMASI -->
                         <div class="detail-grid">
 
-                            <!-- ID -->
                             <div class="detail-box">
                                 <div class="detail-box-title">ID Pengaduan</div>
                                 <div class="detail-box-value"><?= htmlspecialchars($no_user); ?></div>
                             </div>
 
-                            <!-- STATUS -->
                             <div class="detail-box">
                                 <div class="detail-box-title">Status</div>
 
@@ -52,15 +45,13 @@ include __DIR__ . "/../layouts/navbar_user.php";
                                 </div>
                             </div>
 
-                            <!-- TANGGAL -->
                             <div class="detail-box">
                                 <div class="detail-box-title">Tanggal Pengaduan</div>
                                 <div class="detail-box-value">
                                     <?= htmlspecialchars($data['created_at']); ?>
                                 </div>
                             </div>
-
-                            <!-- IDENTITAS -->
+                                
                             <div class="detail-box">
                                 <div class="detail-box-title">Identitas</div>
                                 <div class="detail-box-value">
@@ -68,7 +59,6 @@ include __DIR__ . "/../layouts/navbar_user.php";
                                 </div>
                             </div>
 
-                            <!-- DESKRIPSI -->
                             <div class="detail-box">
                                 <div class="detail-box-title">Deskripsi</div>
                                 <div class="detail-box-value">
@@ -76,7 +66,6 @@ include __DIR__ . "/../layouts/navbar_user.php";
                                 </div>
                             </div>
 
-                            <!-- LOKASI -->
                             <div class="detail-box">
                                 <div class="detail-box-title">Lokasi</div>
                                 <div class="detail-box-value">
@@ -86,7 +75,6 @@ include __DIR__ . "/../layouts/navbar_user.php";
 
                         </div>
 
-                        <!-- FOTO AWAL -->
                         <div class="foto-section">
                             <div class="foto-section-title">Foto Bukti Awal</div>
                             <div class="foto-wrapper">
@@ -102,7 +90,6 @@ include __DIR__ . "/../layouts/navbar_user.php";
                             </div>
                         </div>
 
-                        <!-- FOTO PENYELESAIAN -->
                         <div class="foto-section">
                             <div class="foto-section-title">Foto Penyelesaian</div>
                             <div class="foto-wrapper">
@@ -125,8 +112,9 @@ include __DIR__ . "/../layouts/navbar_user.php";
             </div>
         </div>
 
-    </div> <!-- admin-main -->
+    </div> 
 
-</div> <!-- admin-layout -->
+</div> 
 
 <?php include __DIR__ . "/../layouts/footer.php"; ?>
+
