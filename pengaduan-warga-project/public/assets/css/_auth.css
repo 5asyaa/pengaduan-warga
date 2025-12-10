@@ -1,7 +1,3 @@
-/* =============================================
-   AUTH — FINAL VERSION (LIKE INSTAGRAM VIDEO)
-   ============================================= */
-
 .auth-wrapper {
     min-height: 100vh;
     display: flex;
@@ -19,7 +15,6 @@
     to   { opacity: 1; }
 }
 
-/* MAIN AUTH CARD */
 .auth-container {
     width: 950px;
     height: 520px;
@@ -37,10 +32,6 @@
     from { opacity: 0; transform: translateY(40px); }
     to   { opacity: 1; transform: translateY(0); }
 }
-
-/* =============================================
-   WHITE FORM PANEL
-   ============================================= */
 
 .auth-white-panel {
     width: 60%;
@@ -84,7 +75,6 @@
     box-shadow: 0 0 0 3px rgba(120, 75, 255, 0.2);
 }
 
-/* FORM ERROR BOX (tanpa animasi refresh) */
 .auth-error {
     background: #ffdede;
     padding: 12px;
@@ -94,7 +84,6 @@
     font-size: 14px;
 }
 
-/* SUBMIT BUTTON */
 .btn-primary {
     margin-top: 20px;
     padding: 12px 35px;
@@ -113,9 +102,6 @@
     transform: translateY(-2px);
 }
 
-/* =============================================
-   PURPLE PANEL (THE SLIDING PANEL)
-   ============================================= */
 
 .auth-purple-panel {
     width: 40%;
@@ -130,33 +116,23 @@
     overflow: hidden;
 }
 
-/* =============================================
-   PURPLE PANEL — LOGIN PAGE (RIGHT SIDE)
-   ============================================= */
-
 .auth-wrapper.login .auth-purple-panel {
     border-radius: 0 35px 35px 0;
     animation: slideInRight 0.9s ease-out;
 }
 
-/* curve shape */
 .auth-wrapper.login .auth-purple-panel::before {
     content: "";
     position: absolute;
     inset: 0;
     background: inherit;
-    clip-path: ellipse(130% 120% at -30% 50%);  /* curve di kiri */
+    clip-path: ellipse(130% 120% at -30% 50%);  
 }
 
-/* animation */
 @keyframes slideInRight {
     from { transform: translateX(120px); opacity: 0; }
     to   { transform: translateX(0); opacity: 1; }
 }
-
-/* =============================================
-   PURPLE PANEL — REGISTER PAGE (LEFT SIDE)
-   ============================================= */
 
 .auth-wrapper.register .auth-purple-panel {
     border-radius: 35px 0 0 35px;
@@ -168,17 +144,13 @@
     position: absolute;
     inset: 0;
     background: inherit;
-    clip-path: ellipse(130% 120% at 130% 50%); /* curve di kanan */
+    clip-path: ellipse(130% 120% at 130% 50%); 
 }
 
 @keyframes slideInLeft {
     from { transform: translateX(-120px); opacity: 0; }
     to   { transform: translateX(0); opacity: 1; }
 }
-
-/* =============================================
-   CONTENT INSIDE THE PURPLE PANEL
-   ============================================= */
 
 .auth-purple-panel h2 {
     font-size: 30px;
@@ -196,7 +168,6 @@
     z-index: 2;
 }
 
-/* WHITE OUTLINE BUTTON */
 .btn-outline {
     display: inline-block;
     padding: 10px 34px;
@@ -216,9 +187,6 @@
     color: #5520d4;
 }
 
-/* =============================================
-   PURPLE PANEL – LIKE THE VIDEO (BIG CURVE)
-   ============================================= */
 
 .auth-purple-panel {
     width: 40%;
@@ -235,7 +203,6 @@
     border-radius: 0 35px 35px 0;
 }
 
-/* LOGIN — curve menghadap kiri */
 .auth-wrapper.login .auth-purple-panel::before {
     content: "";
     position: absolute;
@@ -243,11 +210,9 @@
 
     background: inherit;
 
-    /* curve besar seperti video */
     clip-path: ellipse(80% 90% at -10% 50%);
 }
 
-/* REGISTER — curve menghadap kanan */
 .auth-wrapper.register .auth-purple-panel {
     border-radius: 35px 0 0 35px;
     flex-direction: column;
@@ -264,7 +229,6 @@
     clip-path: ellipse(80% 90% at 110% 50%);
 }
 
-/* TEXT INSIDE PURPLE PANEL */
 .auth-purple-panel h2 {
     position: relative;
     z-index: 2;
@@ -282,7 +246,6 @@
     margin-bottom: 28px;
 }
 
-/* OUTLINE BUTTON (CENTER) */
 .btn-outline {
     display: inline-block;
     padding: 12px 36px;
@@ -297,7 +260,7 @@
     position: relative;
     z-index: 2;
 
-    align-self: center; /* supaya tidak mepet kanan */
+    align-self: center; 
 }
 
 .btn-outline:hover {
