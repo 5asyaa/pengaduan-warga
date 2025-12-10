@@ -51,7 +51,7 @@ include __DIR__ . "/../layouts/navbar_user.php";
                                     <?= htmlspecialchars($data['created_at']); ?>
                                 </div>
                             </div>
-                                
+
                             <div class="detail-box">
                                 <div class="detail-box-title">Identitas</div>
                                 <div class="detail-box-value">
@@ -72,6 +72,16 @@ include __DIR__ . "/../layouts/navbar_user.php";
                                     <?= htmlspecialchars($data['lokasi']); ?>
                                 </div>
                             </div>
+
+                            <?php if (strtolower($data['status']) === 'ditolak'): ?>
+                                <div class="detail-box" style="grid-column: 1 / -1;">
+                                    <div class="detail-box-title">Alasan Ditolak</div>
+                                    <div class="detail-box-value" style="color:#c62828; font-weight:600;">
+                                        <?= !empty($data['alasan_penolakan']) ? htmlspecialchars($data['alasan_penolakan']) : 'Tidak ada alasan diberikan.'; ?>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+
 
                         </div>
 
@@ -117,4 +127,3 @@ include __DIR__ . "/../layouts/navbar_user.php";
 </div> 
 
 <?php include __DIR__ . "/../layouts/footer.php"; ?>
-
