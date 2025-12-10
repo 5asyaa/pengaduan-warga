@@ -9,11 +9,7 @@ class Pengaduan
         $this->pdo = $pdo;
     }
 
-    /* =========================
-     * ADMIN
-     * ========================= */
-
-    // Dashboard admin – semua pengaduan
+    // bagian admin: dashboard admin (menampilkan semua pengaduan)
     public function getAll()
     {
         $stmt = $this->pdo->query("
@@ -25,7 +21,7 @@ class Pengaduan
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Detail untuk admin
+    // bagian detail untuk admin
     public function findById($id)
     {
         $stmt = $this->pdo->prepare("
@@ -38,7 +34,7 @@ class Pengaduan
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    // Foto berdasarkan tipe: 'awal' / 'penyelesaian'
+    // bagian foto berdasarkan tipe: 'awal' / 'penyelesaian'
     public function getFotoByType($pengaduan_id, $type)
     {
         $stmt = $this->pdo->prepare("
@@ -49,14 +45,14 @@ class Pengaduan
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Update status pengaduan (menunggu/proses/ditolak/selesai)
+    // bagian update status pengaduan (menunggu/proses/ditolak/selesai)
     public function updateStatus($id, $status)
     {
         $stmt = $this->pdo->prepare("UPDATE pengaduan SET status = ? WHERE id = ?");
         return $stmt->execute([$status, $id]);
     }
 
-    // Tambah foto bukti awal (user)
+    // bagian tambah foto bukti awal (user)
     public function addFotoAwal($pengaduan_id, $filename, $uploaded_by)
     {
         $stmt = $this->pdo->prepare("
@@ -66,7 +62,7 @@ class Pengaduan
         $stmt->execute([$pengaduan_id, $filename, $uploaded_by]);
     }
 
-    // Tambah foto bukti penyelesaian (admin)
+    // bagian tambah foto bukti penyelesaian (admin)
     public function addFotoSelesai($pengaduan_id, $filename, $uploaded_by)
     {
         $stmt = $this->pdo->prepare("
@@ -76,9 +72,7 @@ class Pengaduan
         $stmt->execute([$pengaduan_id, $filename, $uploaded_by]);
     }
 
-    /* =========================
-     * USER
-     * ========================= */
+    //bagian user
 
     public function getByUserId($user_id)
     {
@@ -117,9 +111,7 @@ class Pengaduan
         $stmt->execute([$id]);
     }
 
-    /* =========================
-     * VALIDASI FOTO
-     * ========================= */
+    // bagian validasi foto
 
     public function validasiFoto($nama, $size)
     {
@@ -130,7 +122,7 @@ class Pengaduan
             return "Format foto harus JPG atau PNG!";
         }
 
-        // Maksimal 5MB
+        // maksimal 5MB
         if ($size > 5 * 1024 * 1024) {
             return "Ukuran foto maksimal 5MB!";
         }
