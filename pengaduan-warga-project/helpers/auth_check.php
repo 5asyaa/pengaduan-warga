@@ -6,7 +6,7 @@ if (session_status() === PHP_SESSION_NONE) {
 require_once __DIR__ . "/../config/database.php";
 require_once __DIR__ . "/../models/User.php";
 
-// AUTO LOGIN jika session kosong tetapi cookie ada
+// bagian auto login jika ada cookie remember_user
 if (!isset($_SESSION['user']) && isset($_COOKIE['remember_user'])) {
 
     $data = json_decode(base64_decode($_COOKIE['remember_user']), true);
@@ -22,13 +22,13 @@ if (!isset($_SESSION['user']) && isset($_COOKIE['remember_user'])) {
     }
 }
 
-// Jika tetap belum login
+// jika tetap belum login
 if (!isset($_SESSION['user'])) {
     header("Location: /pengaduan-warga-project/public/index.php");
     exit;
 }
 
-// Simpan role user
+// menyimpan info user yang sedang login
 $role = $_SESSION['user']['role'];
 
 function cekRole($allowedRoles = [])
@@ -39,7 +39,7 @@ function cekRole($allowedRoles = [])
     }
 }
 
-// CSRF Token generator
+// simpan CSRF token di session kalau belum ada
 if (empty($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
